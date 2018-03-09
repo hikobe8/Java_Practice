@@ -1,4 +1,4 @@
-package com.hikobe8.sort;
+package sort;
 
 import util.Utils;
 
