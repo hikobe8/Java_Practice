@@ -1,6 +1,6 @@
-package sort;
+package data_structure.sort;
 
-import util.Utils;
+import data_structure.util.Utils;
 
 public class BubbleSort {
 
@@ -15,7 +15,7 @@ public class BubbleSort {
     /**
      *
      * @param arr original arrays
-     * @param decrease sort type true = increase, false = decrease
+     * @param decrease data_structure.sort type true = increase, false = decrease
      */
     private static void bubbleSort(int [] arr, boolean decrease){
         for (int out = arr.length - 1; out > 1; out --) {

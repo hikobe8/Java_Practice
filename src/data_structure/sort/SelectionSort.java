@@ -1,6 +1,6 @@
-package sort;
+package data_structure.sort;
 
-import util.Utils;
+import data_structure.util.Utils;
 
 public class SelectionSort {
 

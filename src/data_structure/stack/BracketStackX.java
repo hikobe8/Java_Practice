@@ -1,4 +1,4 @@
-package stack;
+package data_structure.stack;
 
 public class BracketStackX {
         private int mMaxSize;

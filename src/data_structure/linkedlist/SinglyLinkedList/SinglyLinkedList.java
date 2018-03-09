@@ -1,4 +1,4 @@
-package linkedlist.SinglyLinkedList;
+package data_structure.linkedlist.SinglyLinkedList;
 
 /**
  * 单向链表实现

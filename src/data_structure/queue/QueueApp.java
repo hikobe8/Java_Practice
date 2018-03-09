@@ -1,4 +1,4 @@
-package queue;
+package data_structure.queue;
 
 public class QueueApp {
 
