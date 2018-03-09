@@ -1,9 +1,5 @@
 package linkedlist.SinglyLinkedList;
 
-import java.awt.*;
-import java.util.Queue;
-import java.util.Stack;
-
 /**
  * 单向链表实现
  */
