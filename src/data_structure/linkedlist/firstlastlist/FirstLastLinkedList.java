@@ -8,7 +8,7 @@ package data_structure.linkedlist.firstlastlist;
  */
 public class FirstLastLinkedList {
 
-    class Link {
+    public class Link {
         public int mData;
         public Link mNext;
 
