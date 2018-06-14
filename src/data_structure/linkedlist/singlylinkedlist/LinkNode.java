@@ -1,4 +1,4 @@
-package data_structure.linkedlist.SinglyLinkedList;
+package data_structure.linkedlist.singlylinkedlist;
 
 /**
  * 链表中的节点元素,为链表的最小组成单元

@@ -1,4 +1,4 @@
-package data_structure.linkedlist.SinglyLinkedList;
+package data_structure.linkedlist.singlylinkedlist;
 
 public class SinglyLinkedListTest {
 

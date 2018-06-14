@@ -13,7 +13,7 @@ public class BubbleSort {
     }
 
     /**
-     *
+     *\
      * @param arr original arrays
      * @param decrease data_structure.sort type true = increase, false = decrease
      */
