@@ -1,5 +1,6 @@
 package data_structure.graph;
 
+import data_structure.queue.Queue;
 import data_structure.stack.StackX;
 
 /**
@@ -19,10 +20,13 @@ public class Graph {
     private int nVerts;
 
     StackX mStackX;
+    
+    Queue mQueue;
 
     public Graph() {
         mVertexList = new Vertex[MAX_VERTEX];
         mStackX = new StackX(MAX_VERTEX);
+        mQueue = new Queue(MAX_VERTEX);
         mAdjMatrix = new int[MAX_VERTEX][MAX_VERTEX];
         for (int i = 0; i < mAdjMatrix.length; i++) {
             for (int j = 0; j < mAdjMatrix[i].length; j++) {
@@ -67,6 +71,27 @@ public class Graph {
                 mVertexList[v].wasVisited = true;
                 displayVertex(v);
                 mStackX.push(v);
+            }
+        }
+        for (int i = 0; i < nVerts; i++) {
+            mVertexList[i].wasVisited = false;
+        }
+    }
+
+    /**
+     * breadth-first-search
+     */
+    public void bfs() {
+        int v2;
+        mVertexList[0].wasVisited = true;
+        displayVertex(0);
+        mQueue.insert(0);
+        while (!mQueue.isEmpty()) {
+            int v = (int) mQueue.remove();
+            while ((v2 = getAdjUnvisitedVertex(v)) != -1) {
+                mVertexList[v2].wasVisited = true;
+                displayVertex(v2);
+                mQueue.insert(v2);
             }
         }
         for (int i = 0; i < nVerts; i++) {
