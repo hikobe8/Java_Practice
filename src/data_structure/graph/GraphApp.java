@@ -18,11 +18,14 @@ public class GraphApp {
 
         graph.addEdge(0,1); //AB
         graph.addEdge(1,2); //BC
+        graph.addEdge(2,3); //CD
         graph.addEdge(0,3); //AD
         graph.addEdge(3,4); //DE
         graph.dfs();
         System.out.println();
         graph.bfs();
+        System.out.println();
+        graph.mst();
     }
 
 }

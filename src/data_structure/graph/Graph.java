@@ -60,6 +60,7 @@ public class Graph {
      * depth-first-search
      */
     public void dfs() {
+        mStackX.clear();
         mVertexList[0].wasVisited = true;
         displayVertex(0);
         mStackX.push(0);
@@ -82,6 +83,7 @@ public class Graph {
      * breadth-first-search
      */
     public void bfs() {
+        mStackX.clear();
         int v2;
         mVertexList[0].wasVisited = true;
         displayVertex(0);
@@ -94,6 +96,32 @@ public class Graph {
                 mQueue.insert(v2);
             }
         }
+        for (int i = 0; i < nVerts; i++) {
+            mVertexList[i].wasVisited = false;
+        }
+    }
+
+    /**
+     * minimum spanning tree depth-first-search
+     */
+    public void mst(){
+        mStackX.clear();
+        mVertexList[0].wasVisited = true;
+        mStackX.push(0);
+        while (!mStackX.isEmpty()) {
+            int currentVertex = (int) mStackX.peek();
+            int v = getAdjUnvisitedVertex(currentVertex);
+            if (v == -1) {
+                mStackX.pop();
+            } else {
+                mVertexList[v].wasVisited = true;
+                mStackX.push(v);
+                displayVertex(currentVertex);
+                displayVertex(v);
+                System.out.print(" ");
+            }
+        }
+
         for (int i = 0; i < nVerts; i++) {
             mVertexList[i].wasVisited = false;
         }

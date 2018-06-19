@@ -32,4 +32,7 @@ public class StackX {
         return  mTop == mMaxSize - 1;
     }
 
+    public void clear() {
+        mTop = -1;
+    }
 }
