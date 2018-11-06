@@ -9,7 +9,7 @@ package src.data_structure.recursion;
 public class AllWords {
 
     public static void main(String[] args) {
-        new AllWordsPrinter("fakegame").printAllWords();
+        new AllWordsPrinter("abc").printAllWords();
     }
 
     private static class AllWordsPrinter {
@@ -43,7 +43,7 @@ public class AllWords {
         }
 
         public void display() {
-            for (int i = 0; i < mArrChar.length; i++) {
+            for (int i = 0; i < mSize; i++) {
                 System.out.print(mArrChar[i]);
             }
             System.out.println();
