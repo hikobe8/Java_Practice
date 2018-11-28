@@ -1,5 +1,8 @@
 package data_structure.sort;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
 import java.util.Stack;
 
 /**
@@ -81,6 +84,20 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
+        int [] arrForPartition = new int[10];
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            arrForPartition[i] = random.nextInt(30);
+        }
+        for (int i : arrForPartition) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        partitionIt(arrForPartition, 0, arrForPartition.length - 1);
+        for (int i : arrForPartition) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
         int[] arr = {6, 4, 3, 1, 7, 8, 0};
         System.out.print("source array : ");
         for (int anArr : arr) {
@@ -99,5 +116,41 @@ public class QuickSort {
             System.out.print(anArr + " ");
         }
     }
+
+
+    /**
+     * 从数组两端根据数据第一个元素进行划分
+     * @param arr
+     */
+    private static void partitionIt(int arr[], int left, int right) {
+        if (arr == null || arr.length<1) {
+            throw new IllegalArgumentException("arr is empty!");
+        } else {
+            int leftPtr = left;
+            int rightPtr = right;
+            int pivot = arr[left];
+            while (true) {
+                while (leftPtr < right && arr[leftPtr] < pivot) {
+                    leftPtr ++;
+                }
+                while (rightPtr > left && arr[rightPtr] > pivot) {
+                    rightPtr --;
+                }
+                if (leftPtr < rightPtr) {
+                    swap(arr, leftPtr, rightPtr);
+                } else {
+                    break;
+                }
+            }
+
+        }
+    }
+
+    private static void swap(int[] arr, int a, int b) {
+        int sum = arr[a] + arr[b];
+        arr[a] = sum - arr[a];
+        arr[b] = sum - arr[b];
+    }
+
 
 }
