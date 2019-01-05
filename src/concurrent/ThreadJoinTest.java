@@ -9,31 +9,46 @@ package src.concurrent;
  */
 public class ThreadJoinTest {
 
-    private static class ChildThread extends Thread{
+    private static class CloseThread extends Thread{
 
         @Override
         public void run() {
             try {
-                Thread.sleep(100);
+                System.out.println("CloseThread: closing");
+                Thread.sleep(1000); //模拟关闭操作
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("child thread exit");
+            System.out.println("CloseThread: closed");
         }
 
     }
 
-    public static void main(String[] args) {
-        for (int i = 0; i < 5; i++) {
-            ChildThread childThread = new ChildThread();
-            childThread.start();
+    private static class StartThread extends Thread{
+
+        private CloseThread mCloseThread;
+
+        public StartThread(CloseThread closeThread) {
+            mCloseThread = closeThread;
+        }
+
+        @Override
+        public void run() {
             try {
-                childThread.join();
+                mCloseThread.join();
+                System.out.println("StartThread: opening");
+                Thread.sleep(1000); //模拟打开操作
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("main thread print");
+            System.out.println("StartThread: opened");
         }
+    }
+    public static void main(String[] args) {
+        CloseThread closeThread = new CloseThread();
+        Thread aChildThread = new StartThread(closeThread);
+        aChildThread.start();
+        closeThread.start();
     }
 
 }
