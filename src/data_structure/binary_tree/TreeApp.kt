@@ -1,7 +1,5 @@
 package data_structure.binary_tree
 
-import com.sun.source.tree.Tree
-
 /**
  * Author : Ray
  * Created At : 2019-02-17 5:31 PM
@@ -16,4 +14,7 @@ fun main(args:Array<String>) {
     tree.insert(15, 42.0)
     tree.insert(28, 51.0)
     tree.inOrder(tree.root)
+    println()
+    println("minimum number in binary search tree is : " + tree.minimum())
+    println("max number in binary search tree is : " + tree.max())
 }

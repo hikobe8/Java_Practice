@@ -81,5 +81,28 @@ class Tree {
         }
     }
 
+    /**
+     * 得到二叉搜索树中的最小值，即最左叶子节点的值
+     */
+    fun minimum(): Node? {
+        var current = root
+        var last: Node? = null
+        while (current != null) {
+            last = current
+            current = current.leftChild
+        }
+        return last
+    }
+
+    fun max():Node? {
+        var current = root
+        var last: Node? = null
+        while (current != null) {
+            last = current
+            current = current.rightChild
+        }
+        return last
+    }
+
 }
    
