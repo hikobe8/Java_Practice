@@ -66,43 +66,101 @@ class Tree {
 
     }
 
-    fun delete(id: Int) {
-
-    }
-
     /**
-     * 中序遍历
+     * 删除节点，有3种情况
+     * 1.没有子节点，即叶子节点
+     * 2.只有一边子树的节点
+     * 3.有两个子树的节点
+     *
      */
-    fun inOrder(root:Node?) {
-        if (root != null) {
-            inOrder(root.leftChild)
-            print("${root.fData} ")
-            inOrder(root.rightChild)
-        }
-    }
-
-    /**
-     * 得到二叉搜索树中的最小值，即最左叶子节点的值
-     */
-    fun minimum(): Node? {
+    fun delete(key: Int): Boolean {
         var current = root
-        var last: Node? = null
-        while (current != null) {
-            last = current
-            current = current.leftChild
-        }
-        return last
-    }
+        var parent = root
+        var isLeftChild = false
+        while (current?.iData != key) {
+            parent = current!!
+            if (key < current.iData) {
+                isLeftChild = true
+                current = current.leftChild
+            } else {
+                isLeftChild = false
+                current = current.rightChild
+            }
+            if (current == null) {
+                return false
+            }
+            if (current.leftChild == null && current.rightChild == null) {
+                //叶子节点
+                if (current == root) {
+                    root = null
+                } else {
+                    if (isLeftChild) {
+                        parent.leftChild = null
+                    } else {
+                        parent.rightChild = null
+                    }
+                }
+            } else if (current.leftChild == null) {
+                //删除只有右子树的节点
+                if (current == root) {
+                    root = current.rightChild
+                } else {
+                    if (isLeftChild) {
+                        parent.leftChild = current.rightChild
+                    } else {
+                        parent.rightChild = current.rightChild
+                    }
+                }
+            } else if (current.rightChild == null) {
+                //删除只有左子树的节点
+                if (current == null) {
+                    root = current
+                } else {
+                    if (isLeftChild) {
+                        parent.leftChild = current.leftChild
+                    } else {
+                        parent.rightChild = current.leftChild
+                    }
+                }
+            } else {
+                //删除有两个子树的节点
 
-    fun max():Node? {
-        var current = root
-        var last: Node? = null
-        while (current != null) {
-            last = current
-            current = current.rightChild
+            }
         }
-        return last
-    }
 
-}
+        /**
+         * 中序遍历
+         */
+        fun inOrder(root: Node?) {
+            if (root != null) {
+                inOrder(root.leftChild)
+                print("${root.fData} ")
+                inOrder(root.rightChild)
+            }
+        }
+
+        /**
+         * 得到二叉搜索树中的最小值，即最左叶子节点的值
+         */
+        fun minimum(): Node? {
+            var current = root
+            var last: Node? = null
+            while (current != null) {
+                last = current
+                current = current.leftChild
+            }
+            return last
+        }
+
+        fun max(): Node? {
+            var current = root
+            var last: Node? = null
+            while (current != null) {
+                last = current
+                current = current.rightChild
+            }
+            return last
+        }
+
+    }
    
