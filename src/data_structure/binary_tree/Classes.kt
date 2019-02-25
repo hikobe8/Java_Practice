@@ -127,40 +127,64 @@ class Tree {
 
             }
         }
-
-        /**
-         * 中序遍历
-         */
-        fun inOrder(root: Node?) {
-            if (root != null) {
-                inOrder(root.leftChild)
-                print("${root.fData} ")
-                inOrder(root.rightChild)
-            }
-        }
-
-        /**
-         * 得到二叉搜索树中的最小值，即最左叶子节点的值
-         */
-        fun minimum(): Node? {
-            var current = root
-            var last: Node? = null
-            while (current != null) {
-                last = current
-                current = current.leftChild
-            }
-            return last
-        }
-
-        fun max(): Node? {
-            var current = root
-            var last: Node? = null
-            while (current != null) {
-                last = current
-                current = current.rightChild
-            }
-            return last
-        }
-
+        return false
     }
+
+    /**
+     * 先序遍历
+     */
+    fun preOrder(root: Node? = this.root) {
+        if (root != null) {
+            print("${root.iData} ")
+            preOrder(root.leftChild)
+            preOrder(root.rightChild)
+        }
+    }
+
+    /**
+     * 中序遍历
+     */
+    fun inOrder(root: Node? = this.root) {
+        if (root != null) {
+            inOrder(root.leftChild)
+            print("${root.iData} ")
+            inOrder(root.rightChild)
+        }
+    }
+
+    /**
+     * 后序序遍历
+     */
+    fun postOrder(root: Node? = this.root) {
+        if (root != null) {
+            postOrder(root.leftChild)
+            postOrder(root.rightChild)
+            print("${root.iData} ")
+        }
+    }
+
+    /**
+     * 得到二叉搜索树中的最小值，即最左叶子节点的值
+     */
+    fun minimum(): Node? {
+        var current = root
+        var last: Node? = null
+        while (current != null) {
+            last = current
+            current = current.leftChild
+        }
+        return last
+    }
+
+    fun max(): Node? {
+        var current = root
+        var last: Node? = null
+        while (current != null) {
+            last = current
+            current = current.rightChild
+        }
+        return last
+    }
+
+}
    
