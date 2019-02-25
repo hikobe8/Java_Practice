@@ -13,6 +13,9 @@ fun main(args: Array<String>) {
     tree.insert(30, 3.0)
     tree.insert(15, 42.0)
     tree.insert(28, 51.0)
+    tree.insert(80, 52.0)
+    tree.insert(90, 53.0)
+    tree.insert(72, 54.0)
     println("先序遍历 : ")
     tree.preOrder()
     println()
@@ -24,4 +27,6 @@ fun main(args: Array<String>) {
     println()
     println("minimum number in binary search tree is : " + tree.minimum())
     println("max number in binary search tree is : " + tree.max())
+    tree.delete(70)
+    tree.delete(20)
 }

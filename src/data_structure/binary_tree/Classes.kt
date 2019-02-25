@@ -89,45 +89,72 @@ class Tree {
             if (current == null) {
                 return false
             }
-            if (current.leftChild == null && current.rightChild == null) {
-                //叶子节点
-                if (current == root) {
-                    root = null
-                } else {
-                    if (isLeftChild) {
-                        parent.leftChild = null
-                    } else {
-                        parent.rightChild = null
-                    }
-                }
-            } else if (current.leftChild == null) {
-                //删除只有右子树的节点
-                if (current == root) {
-                    root = current.rightChild
-                } else {
-                    if (isLeftChild) {
-                        parent.leftChild = current.rightChild
-                    } else {
-                        parent.rightChild = current.rightChild
-                    }
-                }
-            } else if (current.rightChild == null) {
-                //删除只有左子树的节点
-                if (current == null) {
-                    root = current
-                } else {
-                    if (isLeftChild) {
-                        parent.leftChild = current.leftChild
-                    } else {
-                        parent.rightChild = current.leftChild
-                    }
-                }
+        }
+        if (current.leftChild == null && current.rightChild == null) {
+            //叶子节点
+            if (current == root) {
+                //当前节点为根节点的话直接清空整棵树
+                root = null
             } else {
-                //删除有两个子树的节点
-
+                if (isLeftChild) {
+                    parent!!.leftChild = null
+                } else {
+                    parent!!.rightChild = null
+                }
+            }
+        } else if (current.leftChild == null) {
+            //删除只有右子树的节点
+            if (current == root) {
+                root = current.rightChild
+            } else {
+                if (isLeftChild) {
+                    parent!!.leftChild = current.rightChild
+                } else {
+                    parent!!.rightChild = current.rightChild
+                }
+            }
+        } else if (current.rightChild == null) {
+            //删除只有左子树的节点
+            if (current == root) {
+                root = current
+            } else {
+                if (isLeftChild) {
+                    parent!!.leftChild = current.leftChild
+                } else {
+                    parent!!.rightChild = current.leftChild
+                }
+            }
+        } else {
+            //删除有两个子树的节点
+            println("删除节点 ${current.iData}")
+            val findSuccessor = findSuccessor(current)
+            println("继任节点 " + findSuccessor?.iData)
+            if (isLeftChild) {
+                parent!!.leftChild = null
+            } else {
+                parent!!.rightChild = null
+            }
+            if (current == root) {
+               root = findSuccessor
             }
         }
-        return false
+        return true
+    }
+
+    /**
+     * 找到该节点的继任节点，策略为查找该节点右子树的最小点
+     */
+    private fun findSuccessor(node: Node?): Node? {
+        //执行该方法的前提是必定有两个子节点
+        var current = node
+        var parent = current
+        var last: Node? = null
+        while (current != null) {
+            last = current
+            parent = current
+            current = current.leftChild
+        }
+        return parent
     }
 
     /**
@@ -166,7 +193,7 @@ class Tree {
     /**
      * 得到二叉搜索树中的最小值，即最左叶子节点的值
      */
-    fun minimum(): Node? {
+    fun minimum(root: Node? = this.root): Node? {
         var current = root
         var last: Node? = null
         while (current != null) {
