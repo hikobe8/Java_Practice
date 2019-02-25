@@ -127,15 +127,20 @@ class Tree {
         } else {
             //删除有两个子树的节点
             println("删除节点 ${current.iData}")
-            val findSuccessor = findSuccessor(current)
+            val findSuccessor = findSuccessor(current.rightChild)
             println("继任节点 " + findSuccessor?.iData)
-            if (isLeftChild) {
-                parent!!.leftChild = null
-            } else {
-                parent!!.rightChild = null
-            }
             if (current == root) {
-               root = findSuccessor
+                findSuccessor?.leftChild = root?.leftChild
+                findSuccessor?.rightChild = root?.rightChild
+                root = findSuccessor
+            } else {
+                if (isLeftChild) {
+                    parent?.leftChild = findSuccessor
+                } else {
+                    parent?.rightChild = findSuccessor
+                }
+                findSuccessor?.leftChild = current.leftChild
+                findSuccessor?.rightChild = current.rightChild
             }
         }
         return true
@@ -148,13 +153,14 @@ class Tree {
         //执行该方法的前提是必定有两个子节点
         var current = node
         var parent = current
-        var last: Node? = null
-        while (current != null) {
-            last = current
+        var last = node
+        while (current?.leftChild != null) {
             parent = current
+            last = current.leftChild
             current = current.leftChild
         }
-        return parent
+        parent?.leftChild = null
+        return last
     }
 
     /**

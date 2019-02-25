@@ -28,5 +28,12 @@ fun main(args: Array<String>) {
     println("minimum number in binary search tree is : " + tree.minimum())
     println("max number in binary search tree is : " + tree.max())
     tree.delete(70)
+    println("删除 70 后先序遍历 : ")
+    tree.preOrder()
     tree.delete(20)
+    println("删除 20 后先序遍历 : ")
+    tree.preOrder()
+    tree.delete(28)
+    println("删除 28 后先序遍历 : ")
+    tree.preOrder()
 }
