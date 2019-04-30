@@ -84,21 +84,11 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int [] arrForPartition = new int[10];
+        int [] arr = new int[20];
         Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            arrForPartition[i] = random.nextInt(30);
+        for (int i = 0; i < 20; i++) {
+            arr[i] = random.nextInt(100);
         }
-        for (int i : arrForPartition) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        partitionIt(arrForPartition, 0, arrForPartition.length - 1);
-        for (int i : arrForPartition) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        int[] arr = {6, 4, 3, 1, 7, 8, 0};
         System.out.print("source array : ");
         for (int anArr : arr) {
             System.out.print(anArr + " ");
