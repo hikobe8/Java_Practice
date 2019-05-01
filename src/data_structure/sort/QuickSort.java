@@ -15,6 +15,7 @@ public class QuickSort {
 
     /**
      * 递归实现
+     *
      * @param arr
      * @param left
      * @param right
@@ -34,9 +35,9 @@ public class QuickSort {
                 i++;
             }
             if (i < j) {
-                int t = arr[i];
-                arr[i] = arr[j];
-                arr[j] = t;
+                arr[i] = arr[i] ^ arr[j];
+                arr[j] = arr[i] ^ arr[j];
+                arr[i] = arr[i] ^ arr[j];
             }
         }
         arr[left] = arr[i];
@@ -48,9 +49,10 @@ public class QuickSort {
     /**
      * 迭代实现
      * 借助两个栈来存取起始坐标完成迭代
+     *
      * @param arr
      */
-    private static void quickSort(int[] arr) {
+    private static void quickSortIteration(int[] arr) {
         Stack<Integer> startIndexStack = new Stack<>();
         Stack<Integer> endIndexStack = new Stack<>();
         int left = 0;
@@ -60,37 +62,48 @@ public class QuickSort {
         while (!startIndexStack.isEmpty() && !endIndexStack.isEmpty()) {
             int start = startIndexStack.pop();
             int end = endIndexStack.pop();
-            if (start < end) {
-                int i = start;
-                int j = end;
+            int i = start + 1;
+            int j = end;
+            if (start >= end || start < 0) {
+                continue;
+            }
+            while (true) {
                 int standard = arr[start];
                 while (arr[j] <= standard && i < j) {
-                    j --;
+                    j--;
                 }
                 while (arr[i] >= standard && i < j) {
-                    i ++;
+                    i++;
                 }
                 if (i < j) {
-                    int tmp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = tmp;
-                    startIndexStack.push(left);
-                    endIndexStack.push(i - 1);
-                    startIndexStack.push(i + 1);
-                    endIndexStack.push( right);
-                }
+                    arr[i] = arr[i] ^ arr[j];
+                    arr[j] = arr[i] ^ arr[j];
+                    arr[i] = arr[i] ^ arr[j];
+                } else
+                    break;
             }
+
+            arr[i] = arr[i] ^ arr[start];
+            arr[left] = arr[i] ^ arr[start];
+            arr[i] = arr[i] ^ arr[start];
+
+            startIndexStack.push(start);
+            endIndexStack.push(i - 1);
+            startIndexStack.push(i + 1);
+            endIndexStack.push(end);
         }
     }
 
     public static void main(String[] args) {
-        int [] arr = new int[20];
+        int[] arr = new int[20];
         Random random = new Random();
         for (int i = 0; i < 20; i++) {
-            arr[i] = random.nextInt(100);
+            arr[i] = random.nextInt(100) - 50;
         }
+//        arr = new int[]{-5,4,3,-2,2,1,0};
         System.out.print("source array : ");
-        for (int anArr : arr) {
+        int[] arr1 = Arrays.copyOf(arr, arr.length);
+        for (int anArr : arr1) {
             System.out.print(anArr + " ");
         }
         quickSort(arr, 0, arr.length - 1);
@@ -99,7 +112,7 @@ public class QuickSort {
         for (int anArr : arr) {
             System.out.print(anArr + " ");
         }
-        quickSort(arr);
+        quickSortIteration(arr1);
         System.out.println();
         System.out.print("iteration sorted array : ");
         for (int anArr : arr) {
@@ -110,10 +123,11 @@ public class QuickSort {
 
     /**
      * 从数组两端根据数据第一个元素进行划分
+     *
      * @param arr
      */
     private static void partitionIt(int arr[], int left, int right) {
-        if (arr == null || arr.length<1) {
+        if (arr == null || arr.length < 1) {
             throw new IllegalArgumentException("arr is empty!");
         } else {
             int leftPtr = left;
@@ -121,10 +135,10 @@ public class QuickSort {
             int pivot = arr[left];
             while (true) {
                 while (leftPtr < right && arr[leftPtr] < pivot) {
-                    leftPtr ++;
+                    leftPtr++;
                 }
                 while (rightPtr > left && arr[rightPtr] > pivot) {
-                    rightPtr --;
+                    rightPtr--;
                 }
                 if (leftPtr < rightPtr) {
                     swap(arr, leftPtr, rightPtr);
@@ -137,9 +151,9 @@ public class QuickSort {
     }
 
     private static void swap(int[] arr, int a, int b) {
-        int sum = arr[a] + arr[b];
-        arr[a] = sum - arr[a];
-        arr[b] = sum - arr[b];
+        arr[a] = arr[a] ^ arr[b];
+        arr[b] = arr[a] ^ arr[b];
+        arr[a] = arr[a] ^ arr[b];
     }
 
 
