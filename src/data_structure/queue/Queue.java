@@ -49,4 +49,12 @@ public class Queue {
         return size;
     }
 
+    public void display(){
+        if (isEmpty())
+            return;
+        for (int i = front; i <= rear; i++) {
+            System.out.format("%d \t", queueArray[i]);
+        }
+    }
+
 }
