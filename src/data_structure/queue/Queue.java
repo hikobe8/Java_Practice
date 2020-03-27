@@ -16,44 +16,45 @@ public class Queue {
         rear = -1;
     }
 
-    public void insert(long value){
+    public void insert(long value) {
         if (rear == maxSize - 1) {
             rear = -1;
         }
         queueArray[++rear] = value;
-        size ++;
+        size++;
     }
 
-    public long remove(){
+    public long remove() {
         long value = queueArray[front++];
         if (front == maxSize) {
             front = 0;
         }
-        size --;
+        size--;
         return value;
     }
 
-    public long peek(){
+    public long peek() {
         return queueArray[front];
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
-    public boolean isFull(){
+    public boolean isFull() {
         return size == maxSize;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public void display(){
+    public void display() {
         if (isEmpty())
             return;
-        for (int i = front; i <= rear; i++) {
-            System.out.format("%d \t", queueArray[i]);
+        for (int i = 0; i < size; i++) {
+            int index = (front + i) % maxSize;
+            System.out.format("%d \t", queueArray[index]);
         }
     }
 

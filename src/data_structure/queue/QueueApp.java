@@ -6,7 +6,7 @@ public class QueueApp {
 
     public static void main(String[] args) {
 
-        Queue queue = new Queue(5);
+        Queue queue = new Queue(3);
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
