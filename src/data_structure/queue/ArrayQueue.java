@@ -1,7 +1,4 @@
 package data_structure.queue;
-
-import sun.nio.ch.sctp.SctpNet;
-
 import java.util.Scanner;
 
 /**

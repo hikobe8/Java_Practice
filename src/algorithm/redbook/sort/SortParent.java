@@ -1,4 +1,4 @@
-package algorithm.redbook;
+package algorithm.redbook.sort;
 
 import edu.princeton.cs.algs4.StdOut;
 
@@ -7,6 +7,8 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class SortParent {
 
+
+
     public static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
     }
@@ -14,7 +16,7 @@ public class SortParent {
     public static void exch(Comparable[] a, int i, int j) {
         Comparable t = a[i];
         a[i] = a[j];
-        a[j] = a[i];
+        a[j] = t;
     }
 
     public static void show(Comparable[] a) {
