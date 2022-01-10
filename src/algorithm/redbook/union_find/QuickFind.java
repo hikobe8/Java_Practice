@@ -4,8 +4,6 @@ import algorithm.redbook.util.StdInUtil;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-import java.io.FileNotFoundException;
-
 public class QuickFind {
 
     private int count;
