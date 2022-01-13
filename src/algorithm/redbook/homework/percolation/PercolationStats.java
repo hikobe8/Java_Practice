@@ -1,5 +1,6 @@
 package algorithm.redbook.homework.percolation;
 
+import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
@@ -58,11 +59,11 @@ public class PercolationStats {
 
     // test client (see below)
     public static void main(String[] args) {
-        PercolationStats stats = new PercolationStats(100, 50);
+        PercolationStats stats = new PercolationStats(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
         System.out.println("mean                    = " + stats.mean());
         System.out.println("stddev                  = " + stats.stddev());
-        System.out.println("95% confidence interval = " + stats.confidenceLo() +
-                ", " + stats.confidenceHi());
+        System.out.println("95% confidence interval = [" + stats.confidenceLo() +
+                ", " + stats.confidenceHi() + "]");
     }
 
 }
